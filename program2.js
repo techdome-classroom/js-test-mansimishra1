@@ -29,7 +29,7 @@ rl.question('Enter a Roman numeral: ', function (userInput) {
 
         if (nextSymbolValue > currentSymbolValue) {
             integerValue += nextSymbolValue - currentSymbolValue;
-            index++; // Skip the next symbol since it's already considered
+            index++; 
         } else {
             integerValue += currentSymbolValue;
         }
@@ -42,5 +42,5 @@ rl.question('Enter a Roman numeral: ', function (userInput) {
 
 };
 
-
+romanToInt();
 module.exports={romanToInt}
