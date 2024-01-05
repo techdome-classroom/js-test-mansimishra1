@@ -2,30 +2,34 @@
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function(s) {
-   
-   
-    const leftSym = [];
-   
-    for (let i = 0; i < s.length; i++) {
-     
-        if (s[i] === '(' || s[i] === '{' || s[i] === '[') {
-            leftSym.push(s[i]);
+var isValid = function (inputString) {
+    // Stack to store left symbols
+    const stack = [];
+
+    // Loop for each character of the string
+    for (let i = 0; i < inputString.length; i++) {
+        const currentChar = inputString[i];
+
+        // If left symbol is encountered
+        if (currentChar === '(' || currentChar === '{' || currentChar === '[') {
+            stack.push(currentChar);
         }
-       
-        else if (s[i] === ')' && leftSym.length !== 0 && leftSym[leftSym.length - 1] === '(') {
-            leftSym.pop();
-        } else if (s[i] === '}' && leftSym.length !== 0 && leftSym[leftSym.length - 1] === '{') {
-            leftSym.pop();
-        } else if (s[i] === ']' && leftSym.length !== 0 && leftSym[leftSym.length - 1] === '[') {
-            leftSym.pop();
+        // If right symbol is encountered
+        else if (currentChar === ')' && stack.length !== 0 && stack[stack.length - 1] === '(') {
+            stack.pop();
+        } else if (currentChar === '}' && stack.length !== 0 && stack[stack.length - 1] === '{') {
+            stack.pop();
+        } else if (currentChar === ']' && stack.length !== 0 && stack[stack.length - 1] === '[') {
+            stack.pop();
         }
-       
+        // If none of the valid symbols is encountered
         else {
             return false;
         }
     }
-    return leftSym.length === 0;
+
+    // Check if the stack is empty, indicating balanced brackets
+    return stack.length === 0;
 };
 
 
